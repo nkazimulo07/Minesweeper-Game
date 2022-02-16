@@ -8,24 +8,27 @@
         {
             _countMines = new CountMines();
         }
-        public string[,] GameResults(string[,] mine, int row, int column)
+        public string[,] GameResults(string[,] grid)
         {
             int count;
+            var safeSquare = ".";
+            var numberOfMines = "";
 
-            for (var i = 0; i < row; i++)
+            for (var row = 0; row < grid.GetLength(0); row++)
             {
-                for (var j = 0; j < column; j++)
+                for (var column = 0; column < grid.GetLength(1); column++)
                 {
-                    if (mine[i, j] == ".")
+                    if (grid[row, column] == safeSquare)
                     {
                         count = 0;
-                        mine[i, j] = (_countMines.FindMines(mine, row, column, i, j, count)).ToString();
+                        numberOfMines  = _countMines.FindMines(grid, row, column, count).ToString();
+                        grid[row, column] = numberOfMines;
                     }
                 }
 
             }
 
-            return mine;
+            return grid;
         }
     }
 }

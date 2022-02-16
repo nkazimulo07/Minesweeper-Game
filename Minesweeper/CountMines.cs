@@ -8,17 +8,19 @@ namespace Minesweeper
 {
     public class CountMines
     {
-        public int FindMines(string[,] mine, int row, int column, int i, int j, int count)
+        public int FindMines(string[,] grid, int row, int column, int count)
         {
-            for (int x = Math.Max(0, i - 1); x <= Math.Min(i + 1, row); x++)
+            var mine = "*";
+
+            for (int x = Math.Max(0, row - 1); x <= Math.Min(row + 1, grid.GetLength(0)); x++)
             {
-                for (int y = Math.Max(0, j - 1); y <= Math.Min(j + 1, column); y++)
+                for (int y = Math.Max(0, column - 1); y <= Math.Min(column + 1, grid.GetLength(1)); y++)
                 {
-                    if (x >= 0 && y >= 0 && x < row && y < column)
+                    if (x >= 0 && y >= 0 && x < grid.GetLength(0) && y < grid.GetLength(1))
                     {
-                        if (x != i || y != j)
+                        if (x != row || y != column)
                         {
-                            if (mine[x, y] == "*")
+                            if (grid[x, y] == mine )
                             {
                                 count++;
                             }

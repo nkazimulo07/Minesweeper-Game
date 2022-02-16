@@ -8,9 +8,10 @@ namespace Minesweeper
 {
     public class CountMines
     {
-        public int FindMines(string[,] grid, int row, int column, int count)
+        public int FindMines(string[,] grid, int row, int column)
         {
             var mine = "*";
+            var numberOfMines = 0;
 
             for (int x = Math.Max(0, row - 1); x <= Math.Min(row + 1, grid.GetLength(0)); x++)
             {
@@ -22,14 +23,14 @@ namespace Minesweeper
                         {
                             if (grid[x, y] == mine )
                             {
-                                count++;
+                                numberOfMines++;
                             }
                         }
                     }
                 }
             }
 
-            return count;
+            return numberOfMines;
         }
     }
 }

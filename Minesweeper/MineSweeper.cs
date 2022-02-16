@@ -10,7 +10,6 @@
         }
         public string[,] GameResults(string[,] grid)
         {
-            int count;
             var safeSquare = ".";
             var numberOfMines = "";
 
@@ -20,8 +19,7 @@
                 {
                     if (grid[row, column] == safeSquare)
                     {
-                        count = 0;
-                        numberOfMines  = _countMines.FindMines(grid, row, column, count).ToString();
+                        numberOfMines  = _countMines.FindMines(grid, row, column).ToString();
                         grid[row, column] = numberOfMines;
                     }
                 }
